@@ -37,8 +37,7 @@ public class EmployeeBook {
         }
         for (int i = 0; i <= id; i++) {
             if (array[i].equals(o)) {
-                int index = i;
-                return index;
+                return i;
             }
         }
         return -1;
@@ -90,8 +89,7 @@ public class EmployeeBook {
     }
 
     public int averageSalary() {
-        int averageSalary = allSalary() / id;
-        return averageSalary;
+        return allSalary() / id;
     }
 
     public int averageSalaryByDepartment(int department) {
@@ -104,11 +102,10 @@ public class EmployeeBook {
                 index++;
             }
         }
-        int averageSalary = sumSalary / index;
-        return averageSalary;
+        return sumSalary / index;
     }
 
-    public int allSalary(){
+    public int allSalary() {
         int sumSalary = 0;
         for (int i = 0; i < id; i++) {
             Employee o = (Employee) array[i];
@@ -117,7 +114,7 @@ public class EmployeeBook {
         return sumSalary;
     }
 
-    public int allSalaryByDepartment(int department){
+    public int allSalaryByDepartment(int department) {
         int sumSalary = 0;
         for (int i = 0; i < id; i++) {
             Employee o = (Employee) array[i];
@@ -190,11 +187,41 @@ public class EmployeeBook {
         return null;
     }
 
-    public void growSalaryOfPercent(int percent){
-        float coefficientGrowPercent =1 + percent/100f;
+    public void displayEmployeeByDepartment(int department) {
+        for (int i = 0; i < id; i++) {
+            Employee employee = (Employee) array[i];
+            if (employee.getDepartment() == department) {
+                System.out.println("EmployeeBook" +
+                                    "{name='" + employee.getName() + '\'' +
+                                     ", salary=" + employee.getSalary() +
+                                    "}");
+            }
+        }
+    }
+
+    public void growSalaryOfPercent(int percent) {
+        float coefficientGrowPercent = 1 + percent / 100f;
         for (int i = 0; i < id; i++) {
             Employee o = (Employee) array[i];
-            o.setSalary((int) (o.getSalary()*coefficientGrowPercent));
+            o.setSalary((int) (o.getSalary() * coefficientGrowPercent));
+        }
+    }
+
+    public void employeeWithSalaryFrom(int salary){
+        for (int i = 0; i < id; i++) {
+            Employee employee = (Employee) array[i];
+            if (employee.getSalary() >= salary) {
+                System.out.println(employee);
+            }
+        }
+    }
+
+    public void employeeWithSalaryTo(int salary){
+        for (int i = 0; i < id; i++) {
+            Employee employee = (Employee) array[i];
+            if (employee.getSalary() < salary) {
+                System.out.println(employee);
+            }
         }
     }
 

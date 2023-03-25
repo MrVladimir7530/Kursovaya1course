@@ -38,7 +38,8 @@ public class Main {
         System.out.println("Минимальная зарплата: " + employeeBook.minSalary());
         System.out.println("Максимальная зарплата по отделу: " + employeeBook.maxSalaryByDepartment(5));
         System.out.println("Средняя зарплата по отделу: " + employeeBook.averageSalaryByDepartment(5));
-
+        employeeBook.displayEmployeeByDepartment(2);
+        employeeBook.employeeWithSalaryTo(100_000);
 
     }
 }
