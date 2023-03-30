@@ -2,7 +2,7 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 public class EmployeeBook {
-    private Object[] array;
+    private Employee[] array;
     private int id;
     private int capacity;
     private float coefficientGrow = 1.5f;
@@ -10,13 +10,13 @@ public class EmployeeBook {
     public EmployeeBook() {
         id = 0;
         capacity = 10;
-        array = new Object[capacity];
+        array = new Employee[capacity];
     }
 
     public EmployeeBook(int size) {
         id = 0;
         this.capacity = size;
-        array = new Object[size];
+        array = new Employee[size];
     }
 
     private boolean isEmpty() {
@@ -46,7 +46,7 @@ public class EmployeeBook {
     private void newArrayCreateIfFull() {
         if (isFull()) {
             capacity = (int) (capacity * coefficientGrow);
-            Object[] newArray = new Object[capacity];
+            Employee[] newArray = new Employee[capacity];
             System.arraycopy(array, 0, newArray, 0, id);
             array = newArray;
         }
@@ -85,7 +85,7 @@ public class EmployeeBook {
     }
 
     public Employee get(int index) {
-        return (Employee) array[index];
+        return array[index];
     }
 
     public int averageSalary() {
@@ -96,7 +96,7 @@ public class EmployeeBook {
         int sumSalary = 0;
         int index = 0;
         for (int i = 0; i < id; i++) {
-            Employee o = (Employee) array[i];
+            Employee o = array[i];
             if (o.getDepartment() == department) {
                 sumSalary += o.getSalary();
                 index++;
@@ -108,7 +108,7 @@ public class EmployeeBook {
     public int allSalary() {
         int sumSalary = 0;
         for (int i = 0; i < id; i++) {
-            Employee o = (Employee) array[i];
+            Employee o = array[i];
             sumSalary += o.getSalary();
         }
         return sumSalary;
@@ -117,7 +117,7 @@ public class EmployeeBook {
     public int allSalaryByDepartment(int department) {
         int sumSalary = 0;
         for (int i = 0; i < id; i++) {
-            Employee o = (Employee) array[i];
+            Employee o = array[i];
             if (o.getDepartment() == department) {
                 sumSalary += o.getSalary();
             }
@@ -126,10 +126,10 @@ public class EmployeeBook {
     }
 
     public Employee minSalary() {
-        Employee employee = (Employee) array[0];
+        Employee employee = array[0];
         int minSalary = employee.getSalary();
         for (int i = 0; i < id; i++) {
-            Employee o = (Employee) array[i];
+            Employee o = array[i];
             if (o.getSalary() < minSalary) {
                 employee = o;
                 minSalary = o.getSalary();
@@ -140,11 +140,11 @@ public class EmployeeBook {
 
     public Employee minSalaryByDepartment(int department) {
         for (int i = 0; i < id; i++) {
-            Employee employee = (Employee) array[i];
+            Employee employee = array[i];
             if (employee.getDepartment() == department) {
                 int minSalary = employee.getSalary();
                 for (; i < id; i++) {
-                    Employee o = (Employee) array[i];
+                    Employee o = array[i];
                     if (o.getSalary() < minSalary && department == o.getDepartment()) {
                         employee = o;
                         minSalary = o.getSalary();
@@ -157,10 +157,10 @@ public class EmployeeBook {
     }
 
     public Employee maxSalary() {
-        Employee employee = (Employee) array[0];
+        Employee employee = array[0];
         int maxSalary = employee.getSalary();
         for (int i = 0; i < id; i++) {
-            Employee o = (Employee) array[i];
+            Employee o = array[i];
             if (o.getSalary() > maxSalary) {
                 employee = o;
                 maxSalary = o.getSalary();
@@ -171,11 +171,11 @@ public class EmployeeBook {
 
     public Employee maxSalaryByDepartment(int department) {
         for (int i = 0; i < id; i++) {
-            Employee employee = (Employee) array[i];
+            Employee employee = array[i];
             if (employee.getDepartment() == department) {
                 int maxSalary = employee.getSalary();
                 for (; i < id; i++) {
-                    Employee o = (Employee) array[i];
+                    Employee o = array[i];
                     if (o.getSalary() > maxSalary && department == o.getDepartment()) {
                         employee = o;
                         maxSalary = o.getSalary();
@@ -189,12 +189,12 @@ public class EmployeeBook {
 
     public void displayEmployeeByDepartment(int department) {
         for (int i = 0; i < id; i++) {
-            Employee employee = (Employee) array[i];
+            Employee employee = array[i];
             if (employee.getDepartment() == department) {
                 System.out.println("EmployeeBook" +
-                                    "{name='" + employee.getName() + '\'' +
-                                     ", salary=" + employee.getSalary() +
-                                    "}");
+                        "{name='" + employee.getName() + '\'' +
+                        ", salary=" + employee.getSalary() +
+                        "}");
             }
         }
     }
@@ -202,23 +202,23 @@ public class EmployeeBook {
     public void growSalaryOfPercent(int percent) {
         float coefficientGrowPercent = 1 + percent / 100f;
         for (int i = 0; i < id; i++) {
-            Employee o = (Employee) array[i];
+            Employee o = array[i];
             o.setSalary((int) (o.getSalary() * coefficientGrowPercent));
         }
     }
 
-    public void employeeWithSalaryFrom(int salary){
+    public void employeeWithSalaryFrom(int salary) {
         for (int i = 0; i < id; i++) {
-            Employee employee = (Employee) array[i];
+            Employee employee = array[i];
             if (employee.getSalary() >= salary) {
                 System.out.println(employee);
             }
         }
     }
 
-    public void employeeWithSalaryTo(int salary){
+    public void employeeWithSalaryTo(int salary) {
         for (int i = 0; i < id; i++) {
-            Employee employee = (Employee) array[i];
+            Employee employee = array[i];
             if (employee.getSalary() < salary) {
                 System.out.println(employee);
             }
